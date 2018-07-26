@@ -12,6 +12,8 @@ Study 1 folder contains:
   * CodeExampleDescriptions.csv - Our classification of the code from the randomly selected browser sessions. Note that we excluded some sessions since our script that selected the browser sessions failed to display the program being edited/executed. We do not include any of the actual code here due to the potential risk of identifiability.
   
   * CodeExampleDescriptionsSummaryStats.csv - A couple summary statistics for the four countries.
+  
+  * study_1_data.csv - coming soon, once I split the 800mb file into smaller pieces so github can store it
 
 ### Statistics files
 
