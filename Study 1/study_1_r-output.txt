@@ -1,0 +1,182 @@
+> study1Data = read.csv(file="study_1_data.csv")
+> 
+> study1Data <- transform(study1Data,
++                  UUID = as.factor(UUID),
++                  forwardSteps = stepsInViz - vizBackwardsSteps
++ )
+> 
+> #add session forward steps
+> forwardSums <-aggregate(study1Data[c("forwardSteps")], study1Data["SessionId"], sum)
+> forwardSums <- transform(forwardSums,
++      sessionTotalForwadStepsInViz = forwardSteps
++ )
+> study1Data = merge(study1Data, forwardSums[c("SessionId", "sessionTotalForwadStepsInViz")], by="SessionId")
+> 
+> #count final UUIDS
+> study1DataWithPDI = study1Data[!is.na(study1Data["pdi"]), ]
+> length(study1DataWithPDI[, 'UUID'])
+[1] 1236863
+> length(unique(study1DataWithPDI[, 'UUID']))
+[1] 78369
+> length(unique(study1DataWithPDI[, 'Country']))
+[1] 69
+> 
+> summary(study1DataWithPDI[, 'pdi'])
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  11.00   40.00   40.00   50.42   68.00  104.00 
+> sd(study1DataWithPDI[, 'pdi'])
+[1] 17.84873
+> 
+> 
+> scaledstudy1Data = study1Data
+> 
+> scaledstudy1Data <- transform(scaledstudy1Data,
++                        pdi =  scale(pdi),
++                        idv =  scale(idv),
++                        mas =  scale(mas),
++                        ltowvs =  scale(ltowvs),
++                        ivr =  scale(ivr),
++                        Student.teacher.ratio =  scale(Student.teacher.ratio),
++                        GDP.per.capita =  scale(GDP.per.capita),
++                        vizTime =  scale(vizTime),
++                        vizTotalSteps =  scale(vizTotalSteps),
++                        forwardSteps = scale(forwardSteps),
++                        sessionTotalStepsInViz =  scale(sessionTotalStepsInViz),
++                        sessionTotalForwadStepsInViz =  scale(sessionTotalForwadStepsInViz),
++                        sessionSumCodeEditDistance =  scale(sessionSumCodeEditDistance),
++                        sessionNumVizSessions =  scale(sessionNumVizSessions),
++                        vizCodeCharLength =  scale(vizCodeCharLength),
++                        vizCodeEditDistance =  scale(vizCodeEditDistance),
++                        vizSessionNum =  scale(vizSessionNum),
++                        vizSteps.Call =  scale(vizSteps.Call),
++                        vizSteps.Exception =  scale(vizSteps.Exception)
++ )
+> 
+> 
+> 
+> #use linear model due to magnitude of N
+> 
+> 
+> backStepModel<-lmer(formula =vizBackwardsSteps ~  
++                  pdi # + Student.teacher.ratio + GDP.per.capita
++                + vizTime +vizTotalSteps + forwardSteps + sessionTotalForwadStepsInViz +  sessionSumCodeEditDistance  
++                + sessionAnyEdits + sessionNumVizSessions + vizCodeCharLength + vizCodeEditDistance  +vizCodeWasEdited
++                + vizSessionNum + vizSteps.Call  + vizSteps.Exception+ sessionAnyDupCode
++                 #     + (1 | Country) 
++                      + (1 | UUID)
++                    , data = scaledstudy1Data
++ ) 
+> 
+> backStepModel
+Linear mixed model fit by REML ['merModLmerTest']
+Formula: vizBackwardsSteps ~ pdi + vizTime + vizTotalSteps + forwardSteps +      sessionTotalForwadStepsInViz + sessionSumCodeEditDistance +  
+    sessionAnyEdits + sessionNumVizSessions + vizCodeCharLength +      vizCodeEditDistance + vizCodeWasEdited + vizSessionNum +  
+    vizSteps.Call + vizSteps.Exception + sessionAnyDupCode +      (1 | UUID)
+   Data: scaledstudy1Data
+REML criterion at convergence: 6039938
+Random effects:
+ Groups   Name        Std.Dev.
+ UUID     (Intercept) 1.000   
+ Residual             2.723   
+Number of obs: 1236863, groups:  UUID, 78369
+Fixed Effects:
+                 (Intercept)                           pdi                       vizTime                 vizTotalSteps                  forwardSteps  
+                    0.954695                     -0.051698                      0.231482                      0.024399                      1.249336  
+sessionTotalForwadStepsInViz    sessionSumCodeEditDistance           sessionAnyEditsTRUE         sessionNumVizSessions             vizCodeCharLength  
+                   -0.017480                      0.015254                      0.067181                      0.030245                      0.154575  
+         vizCodeEditDistance          vizCodeWasEditedTrue                 vizSessionNum                 vizSteps.Call            vizSteps.Exception  
+                   -0.041360                     -0.002861                      0.005241                      0.006002                      0.063288  
+       sessionAnyDupCodeTRUE  
+                   -0.042029  
+> summary(backStepModel)
+Linear mixed model fit by REML 
+t-tests use  Satterthwaite approximations to degrees of freedom ['lmerMod']
+Formula: vizBackwardsSteps ~ pdi + vizTime + vizTotalSteps + forwardSteps +      sessionTotalForwadStepsInViz + sessionSumCodeEditDistance +  
+    sessionAnyEdits + sessionNumVizSessions + vizCodeCharLength +      vizCodeEditDistance + vizCodeWasEdited + vizSessionNum +  
+    vizSteps.Call + vizSteps.Exception + sessionAnyDupCode +      (1 | UUID)
+   Data: scaledstudy1Data
+
+REML criterion at convergence: 6039938
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-27.492  -0.307  -0.073   0.060  69.531 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ UUID     (Intercept) 1.000    1.000   
+ Residual             7.414    2.723   
+Number of obs: 1236863, groups:  UUID, 78369
+
+Fixed effects:
+                               Estimate Std. Error         df t value Pr(>|t|)    
+(Intercept)                   9.547e-01  9.392e-03  2.428e+05 101.648  < 2e-16 ***
+pdi                          -5.170e-02  5.648e-03  4.749e+04  -9.153  < 2e-16 ***
+vizTime                       2.315e-01  2.749e-03  1.192e+06  84.203  < 2e-16 ***
+vizTotalSteps                 2.440e-02  3.290e-03  1.211e+06   7.416 1.21e-13 ***
+forwardSteps                  1.249e+00  2.954e-03  1.235e+06 422.940  < 2e-16 ***
+sessionTotalForwadStepsInViz -1.748e-02  4.919e-03  1.079e+06  -3.553 0.000381 ***
+sessionSumCodeEditDistance    1.525e-02  3.769e-03  1.055e+06   4.048 5.18e-05 ***
+sessionAnyEditsTRUE           6.718e-02  9.736e-03  1.028e+06   6.900 5.19e-12 ***
+sessionNumVizSessions         3.025e-02  6.369e-03  1.092e+06   4.749 2.05e-06 ***
+vizCodeCharLength             1.546e-01  3.295e-03  8.817e+05  46.910  < 2e-16 ***
+vizCodeEditDistance          -4.136e-02  2.671e-03  1.237e+06 -15.485  < 2e-16 ***
+vizCodeWasEditedTrue         -2.861e-03  6.591e-03  1.237e+06  -0.434 0.664252    
+vizSessionNum                 5.241e-03  4.285e-03  1.182e+06   1.223 0.221251    
+vizSteps.Call                 6.002e-03  3.028e-03  1.209e+06   1.982 0.047431 *  
+vizSteps.Exception            6.329e-02  2.589e-03  1.237e+06  24.446  < 2e-16 ***
+sessionAnyDupCodeTRUE        -4.203e-02  9.041e-03  5.094e+05  -4.649 3.34e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation matrix not shown by default, as p = 16 > 12.
+Use print(x, correlation=TRUE)  or
+	 vcov(x)	 if you need it
+
+> anova(backStepModel)
+Analysis of Variance Table of type III  with  Satterthwaite 
+approximation for degrees of freedom
+                              Sum Sq Mean Sq NumDF   DenDF F.value    Pr(>F)    
+pdi                              621     621     1   47487      84 < 2.2e-16 ***
+vizTime                        52566   52566     1 1191569    7090 < 2.2e-16 ***
+vizTotalSteps                    408     408     1 1210860      55 1.206e-13 ***
+forwardSteps                 1326190 1326190     1 1235156  178878 < 2.2e-16 ***
+sessionTotalForwadStepsInViz      94      94     1 1078665      13 0.0003806 ***
+sessionSumCodeEditDistance       121     121     1 1054909      16 5.176e-05 ***
+sessionAnyEdits                  353     353     1 1027554      48 5.189e-12 ***
+sessionNumVizSessions            167     167     1 1091564      23 2.048e-06 ***
+vizCodeCharLength              16315   16315     1  881692    2201 < 2.2e-16 ***
+vizCodeEditDistance             1778    1778     1 1236819     240 < 2.2e-16 ***
+vizCodeWasEdited                   1       1     1 1236691       0 0.6642522    
+vizSessionNum                     11      11     1 1181810       1 0.2212513    
+vizSteps.Call                     29      29     1 1208655       4 0.0474305 *  
+vizSteps.Exception              4431    4431     1 1236685     598 < 2.2e-16 ***
+sessionAnyDupCode                160     160     1  509415      22 3.344e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+> r.squaredGLMM(backStepModel)
+      R2m       R2c 
+0.1795185 0.2770619 
+
+> #compare 2 countries
+> Israel = study1Data[study1Data["Country"] == "Israel", ]
+> sd(Israel[, c("vizBackwardsSteps")])
+[1] 4.175613
+> India = study1Data[study1Data["Country"] == "India", ]
+> sd(India[, c("vizBackwardsSteps")])
+[1] 1.712111
+> 
+> IndIsrael <- study1Data[study1Data["Country"] == "Israel" | study1Data["Country"] == "India", ]
+> t.test(vizBackwardsSteps ~ Country, IndIsrael)
+
+	Welch Two Sample t-test
+
+data:  vizBackwardsSteps by Country
+t = -49.247, df = 26206, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.389933 -1.283527
+sample estimates:
+ mean in group India mean in group Israel 
+           0.3799245            1.7166544 
