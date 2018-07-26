@@ -1,0 +1,653 @@
+
+> library(lmerTest)
+> library("pscl")
+> library("lmtest")
+> library(plyr)
+> library(glmmADMB)
+> 
+> #optional set working directory
+> #setwd("")
+> 
+> codeRuns = read.csv("code_runs.csv",sep=";")
+> codeRunScores = read.csv("code_run_scores.csv")
+> codeProbSess = read.csv("coding_problem_session.csv",sep=";")
+> participantInfo = read.csv("participantInfo.csv",sep=";")
+> demographics = read.csv("demographics.csv",sep=";")
+> schwartz = read.csv("schwartz_survey.csv",sep=";")
+> follow_up_questions = read.csv("follow_up_questions.csv",sep=";")
+> countryMatch = read.csv("country-matching-file.csv")
+> hofstede = read.csv("hofstede-fixed.csv")
+> st_ratio = read.csv("world-bank pupil-teacher ratio.csv")
+> gdp_per_capita = read.csv("world-bank gdp per capita.csv")
+> 
+> 
+> #########################################
+> #         General stats
+> #########################################
+> 
+> # PDI vs. Student teacher ratio and GDP per capita
+> 
+> tmp <- merge(gdp_per_capita, st_ratio, by="Country")
+> 
+> st_ratio_hofstede <- merge(hofstede, tmp, by.x="country", by.y="Country")
+> 
+> cor.test(st_ratio_hofstede[, c("Student.teacher.ratio")], st_ratio_hofstede[, c("pdi")])
+
+	Pearson's product-moment correlation
+
+data:  st_ratio_hofstede[, c("Student.teacher.ratio")] and st_ratio_hofstede[, c("pdi")]
+t = 2.7268, df = 47, p-value = 0.008961
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.09863564 0.58951293
+sample estimates:
+      cor 
+0.3695815 
+
+> 
+> cor.test(st_ratio_hofstede[, c("GDP.per.capita")], st_ratio_hofstede[, c("pdi")])
+
+	Pearson's product-moment correlation
+
+data:  st_ratio_hofstede[, c("GDP.per.capita")] and st_ratio_hofstede[, c("pdi")]
+t = -6.3301, df = 65, p-value = 2.599e-08
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.7469541 -0.4430650
+sample estimates:
+       cor 
+-0.6175491 
+
+> 
+> 
+> 
+> #percentage with forward steps and back-steps
+> 
+> #join for to make sure we only count compelete data for viz sessions
+> # Note: not all users made viz sessions, so this is just for viz sessions
+> # data and user counts who made those viz sessions
+> tmp = codeRuns
+> 
+> tmp = merge(tmp, 
++             codeProbSess[c("codeProbId", "participantId", "problemNum", "isTimed", "totalExecutionVizSessions", "score")]
++             , by="codeProbId")
+> 
+> tmp = merge(tmp, 
++             demographics
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             schwartz
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             participantInfo
++             , by="participantId")
+> 
+> codeRunsSummary = tmp
+> nrow(codeRunsSummary)
+[1] 2939
+> 
+> #clean (don't count our automatically started code sessions for grading)
+> codeRunsSummaryCleaned = codeRunsSummary[codeRunsSummary["isUserStarted"] == 1, ]
+> 
+> nrow(codeRunsSummaryCleaned)
+[1] 2697
+> nrow(unique(codeRunsSummaryCleaned["participantId"]))
+[1] 499
+> 
+> #how many forward step sessions?
+> fwdStepSessions = codeRunsSummaryCleaned[codeRunsSummaryCleaned["fwdSteps"] >= 1, ]
+> nrow(fwdStepSessions)
+[1] 2003
+> nrow(fwdStepSessions) / nrow(codeRunsSummaryCleaned)
+[1] 0.742677
+> nrow(unique(fwdStepSessions["participantId"]))
+[1] 458
+> 
+> # how many backward step sessions?
+> backStepSessions = codeRunsSummaryCleaned[codeRunsSummaryCleaned["backsteps"] >= 1, ]
+> nrow(backStepSessions)
+[1] 504
+> nrow(backStepSessions) / nrow(codeRunsSummaryCleaned)
+[1] 0.1868743
+> nrow(unique(backStepSessions["participantId"]))
+[1] 276
+> 
+> 
+> 
+> #########################################
+> # PDI and conservation stats and relation
+> #########################################
+> 
+> tmp = participantInfo
+> 
+> tmp = merge(tmp, 
++             demographics
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             schwartz
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             countryMatch
++             , by.x=c("country0"), by.y = c("demo.country"), all.x = TRUE)
+> 
+> tmp = merge(tmp, 
++             hofstede
++             , by="ctr")
+> 
+> participantJoined = tmp
+> 
+> 
+> summary(participantJoined[, c("conservation")])
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-5.1600 -1.4000 -0.4400 -0.7087 -0.0600  4.2100 
+> summary(participantJoined[, c("age")])
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   6.00   19.00   24.00   27.13   31.00   99.00 
+> sd(participantJoined[, c("age")])
+[1] 11.97071
+> 
+> length(participantJoined[, c("conservation")])
+[1] 801
+> sd(participantJoined[, c("conservation")])
+[1] 1.181105
+> table(participantJoined[, c("gender")])
+
+  0   1   2 
+650 140  11 
+> 
+> participantJoinedPDI = participantJoined[!is.na(participantJoined["pdi"]), ]
+> summary(participantJoinedPDI[, c("pdi")])
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+     11      40      68      61      77     104 
+> sd(participantJoinedPDI[, c("pdi")])
+[1] 20.50755
+> 
+> 
+> # test conservation and PDI correlation
+> cor.test(participantJoined[, c("conservation")], participantJoined[, c("pdi")])
+
+	Pearson's product-moment correlation
+
+data:  participantJoined[, c("conservation")] and participantJoined[, c("pdi")]
+t = 4.6625, df = 735, p-value = 3.71e-06
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.09847827 0.23878539
+sample estimates:
+      cor 
+0.1694905 
+
+> 
+> #make sure conservation, pdi and country name are set for country averages
+> participantJoinedWCons = participantJoined[!is.na(participantJoined["conservation"]), ]
+> participantJoinedWCons = participantJoinedWCons[!is.na(participantJoinedWCons["pdi"]), ]
+> participantJoinedWCons = participantJoinedWCons[!is.na(participantJoinedWCons["short.name"]), ]
+> 
+> library(Rmisc)
+> countryConsAvgs <- summarySE(participantJoinedWCons, measurevar="conservation", groupvars=c("short.name"))
+Warning message:
+In qt(conf.interval/2 + 0.5, datac$N - 1) : NaNs produced
+> 
+> countryPDIAvgs <- aggregate(participantJoinedWCons[c("pdi")], participantJoinedWCons["short.name"], mean)
+> 
+> countrySummary <- cbind(countryConsAvgs, countryPDIAvgs)
+> 
+> 
+> cor.test(countrySummary[, c("conservation")], countrySummary[, c("pdi")])
+
+	Pearson's product-moment correlation
+
+data:  countrySummary[, c("conservation")] and countrySummary[, c("pdi")]
+t = 2.3879, df = 55, p-value = 0.02041
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.04990756 0.52512041
+sample estimates:
+      cor 
+0.3064895 
+
+> 
+> countrySummaryFiltered = countrySummary[countrySummary["N"] >= 5, ]
+> 
+> 
+> #########################################
+> #         backstep regression models
+> #########################################
+> 
+> tmp = codeRuns
+> 
+> tmp = merge(tmp, 
++             codeProbSess[c("codeProbId", "participantId", "problemNum", "isTimed", "totalExecutionVizSessions", "score")]
++             , by="codeProbId")
+> 
+> tmp = merge(tmp, 
++             demographics
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             schwartz
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             participantInfo
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             countryMatch
++             , by.x=c("ipCountry"), by.y = c("ip.Country"), all.x = TRUE)
+> 
+> tmp = merge(tmp, 
++             hofstede
++             , by="ctr", all.x = TRUE)
+> 
+> codeRunsJoined = tmp
+> 
+> codeRunsJoined <- transform(codeRunsJoined,
++         participantId = as.factor(participantId),
++         gender = as.factor(gender),
++         isTimed = as.factor(isTimed),
++         pythonBefore = as.factor(pythonBefore),
++         problemNum = as.factor(problemNum),
++         education = ordered(education, levels=c("pre-high school", "high school", "professional school", "college", "PhD", "postdoctoral")),
++         programmingExperience = ordered(codeRunsJoined$programmingExperience, levels = c("none", "3m", "6m", "1yr", "more")),
++         pythonTutorBefore = ordered(codeRunsJoined$pythonTutorBefore, levels = c("0", "1-2", "3-5", "6+"))
++ )
+> 
+> 
+> #(don't count our automatically started code sessions for grading)
+> codeRunsJoinedAndFixed = codeRunsJoined
+> codeRunsJoinedAndFixed = codeRunsJoined[codeRunsJoined["isUserStarted"] == 1, ]
+> 
+> ####compare Canada and Japan
+> 
+> Canada = codeRunsJoinedAndFixed[codeRunsJoinedAndFixed["ipCountry"] == "Canada", ]
+> sd(Canada[, c("backsteps")])
+[1] 3.995097
+> 
+> Japan = codeRunsJoinedAndFixed[codeRunsJoinedAndFixed["ipCountry"] == "Japan", ]
+> sd(Japan[, c("backsteps")])
+[1] 1.113863
+> 
+> CanadaJapan <- codeRunsJoinedAndFixed[codeRunsJoinedAndFixed["ipCountry"] == "Canada" | codeRunsJoinedAndFixed["ipCountry"] == "Japan", ]
+> t.test(backsteps ~ ipCountry, CanadaJapan)
+
+	Welch Two Sample t-test
+
+data:  backsteps by ipCountry
+t = 2.0241, df = 185.35, p-value = 0.0444
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.01898828 1.48188585
+sample estimates:
+mean in group Canada  mean in group Japan 
+            1.062937             0.312500 
+
+> 
+> 
+> #make sure age and gender are not blank for regression model
+> codeRunsJoinedAndFixed = codeRunsJoinedAndFixed[!is.na(codeRunsJoinedAndFixed["gender"]), ]
+> codeRunsJoinedAndFixed = codeRunsJoinedAndFixed[!is.na(codeRunsJoinedAndFixed["age"]), ]
+> 
+> # check conservation and backsteps
+> model = glmmadmb(backsteps ~  
++                    conservation
++                  + fwdSteps
++                  + programmingExperience 
++                  + (1 | participantId),
++          data=codeRunsJoinedAndFixed,
++          zeroInflation=TRUE,
++          family="nbinom")
+> 
+> 
+> summary(model)
+
+Call:
+glmmadmb(formula = backsteps ~ conservation + fwdSteps + programmingExperience + 
+    (1 | participantId), data = codeRunsJoinedAndFixed, family = "nbinom", 
+    zeroInflation = TRUE)
+
+AIC: 4702.6 
+
+Coefficients:
+                        Estimate Std. Error z value Pr(>|z|)    
+(Intercept)             -1.44802    0.24539   -5.90  3.6e-09 ***
+conservation            -0.11091    0.06305   -1.76   0.0786 .  
+fwdSteps                 0.07717    0.00622   12.42  < 2e-16 ***
+programmingExperience.L -0.23195    0.18747   -1.24   0.2160    
+programmingExperience.Q -0.48474    0.17924   -2.70   0.0068 ** 
+programmingExperience.C  0.08763    0.17436    0.50   0.6153    
+programmingExperience^4 -0.29088    0.16538   -1.76   0.0786 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Number of observations: total=2697, participantId=499 
+Random effect variance(s):
+Group=participantId
+            Variance StdDev
+(Intercept)   0.5665 0.7527
+
+Negative binomial dispersion parameter: 0.21346 (std. err.: 0.069256)
+Zero-inflation: 0.21395  (std. err.:  0.1658 )
+
+Log-likelihood: -2341.31 
+Warning message:
+In .local(x, sigma, ...) :
+  'sigma' and 'rdig' arguments are present for compatibility only: ignored
+> 
+> 
+> # check PDI and backsteps
+> 
+> # make sure PDI is set
+> codeRunsJoinedAndFixedPDI = codeRunsJoinedAndFixed[!is.na(codeRunsJoinedAndFixed["pdi"]), ]
+> 
+> model = glmmadmb(backsteps ~  
++                    pdi
++                  + fwdSteps
++                  + age + gender
++                  + programmingExperience 
++                  + (1 | participantId),
++                  data=codeRunsJoinedAndFixedPDI,
++                  zeroInflation=TRUE,
++                  family="nbinom")
+> summary(model)
+
+Call:
+glmmadmb(formula = backsteps ~ pdi + fwdSteps + age + gender + 
+    programmingExperience + (1 | participantId), data = codeRunsJoinedAndFixedPDI, 
+    family = "nbinom", zeroInflation = TRUE)
+
+AIC: 4532.2 
+
+Coefficients:
+                        Estimate Std. Error z value Pr(>|z|)    
+(Intercept)             -1.22456    0.38817   -3.15   0.0016 ** 
+pdi                      0.00341    0.00398    0.86   0.3916    
+fwdSteps                 0.07748    0.00632   12.26   <2e-16 ***
+age                     -0.01220    0.00692   -1.76   0.0778 .  
+gender1                 -0.34207    0.21094   -1.62   0.1049    
+gender2                  0.46826    0.61061    0.77   0.4432    
+programmingExperience.L -0.16014    0.19772   -0.81   0.4180    
+programmingExperience.Q -0.31978    0.19161   -1.67   0.0951 .  
+programmingExperience.C  0.07438    0.17951    0.41   0.6786    
+programmingExperience^4 -0.20006    0.17130   -1.17   0.2429    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Number of observations: total=2595, participantId=481 
+Random effect variance(s):
+Group=participantId
+            Variance StdDev
+(Intercept)   0.5736 0.7573
+
+Negative binomial dispersion parameter: 0.20189 (std. err.: 0.068869)
+Zero-inflation: 0.17683  (std. err.:  0.18579 )
+
+Log-likelihood: -2253.09 
+Warning message:
+In .local(x, sigma, ...) :
+  'sigma' and 'rdig' arguments are present for compatibility only: ignored
+> 
+> 
+> 
+> #########################################
+> #       Delta run score per session
+> #########################################
+> 
+> tmp = codeRuns
+> 
+> tmp = merge(tmp, 
++             codeRunScores
++             , by="codeRunId")
+> 
+> tmp = merge(tmp, 
++             codeProbSess[c("codeProbId", "participantId", "problemNum", "isTimed", "totalExecutionVizSessions", "score")]
++             , by="codeProbId")
+> 
+> tmp = merge(tmp, 
++             demographics
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             schwartz
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             participantInfo
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             countryMatch
++             , by.x=c("ipCountry"), by.y = c("ip.Country"), all.x = TRUE)
+> 
+> tmp = merge(tmp, 
++             hofstede
++             , by="ctr", all.x = TRUE)
+> 
+> codeRunsJoined = tmp
+> 
+> codeRunsJoined <- transform(codeRunsJoined,
++                             participantId = as.factor(participantId),
++                             gender = as.factor(gender),
++                             isTimed = as.factor(isTimed),
++                             pythonBefore = as.factor(pythonBefore),
++                             problemNum = as.factor(problemNum),
++                             education = ordered(education, levels=c("pre-high school", "high school", "professional school", "college", "PhD", "postdoctoral")),
++                             programmingExperience = ordered(codeRunsJoined$programmingExperience, levels = c("none", "3m", "6m", "1yr", "more")),
++                             pythonTutorBefore = ordered(codeRunsJoined$pythonTutorBefore, levels = c("0", "1-2", "3-5", "6+"))
++ )
+> 
+> 
+> 
+> #(don't count our automatically started code sessions for grading)
+> codeRunsJoinedAndFixed = codeRunsJoined
+> codeRunsJoinedAndFixed = codeRunsJoined[codeRunsJoined["isUserStarted"] == 1, ]
+> 
+> 
+> consBackStepModel<-lmer(formula =deltaRunScore ~  
++                           runScore
++                         +  backsteps * conservation
++                         + fwdSteps
++                         + programmingExperience 
++                         + (1 | participantId)
++                         , data = codeRunsJoinedAndFixed
++ ) 
+> 
+> consBackStepModel
+Linear mixed model fit by REML ['merModLmerTest']
+Formula: deltaRunScore ~ runScore + backsteps * conservation + fwdSteps +      programmingExperience + (1 | participantId)
+   Data: codeRunsJoinedAndFixed
+REML criterion at convergence: 5143.776
+Random effects:
+ Groups        Name        Std.Dev.
+ participantId (Intercept) 0.2346  
+ Residual                  1.0387  
+Number of obs: 1723, groups:  participantId, 422
+Fixed Effects:
+            (Intercept)                 runScore                backsteps             conservation                 fwdSteps  
+               0.521512                -0.190772                -0.022904                -0.013595                 0.005826  
+programmingExperience.L  programmingExperience.Q  programmingExperience.C  programmingExperience^4   backsteps:conservation  
+               0.499388                 0.014868                 0.055910                -0.049693                -0.012337  
+> summary(consBackStepModel)
+Linear mixed model fit by REML 
+t-tests use  Satterthwaite approximations to degrees of freedom ['lmerMod']
+Formula: deltaRunScore ~ runScore + backsteps * conservation + fwdSteps +      programmingExperience + (1 | participantId)
+   Data: codeRunsJoinedAndFixed
+
+REML criterion at convergence: 5143.8
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-4.0778 -0.5630 -0.2987  0.3514  3.6126 
+
+Random effects:
+ Groups        Name        Variance Std.Dev.
+ participantId (Intercept) 0.05506  0.2346  
+ Residual                  1.07884  1.0387  
+Number of obs: 1723, groups:  participantId, 422
+
+Fixed effects:
+                          Estimate Std. Error         df t value Pr(>|t|)    
+(Intercept)              5.215e-01  4.205e-02  3.414e+02  12.401  < 2e-16 ***
+runScore                -1.908e-01  3.317e-02  1.568e+03  -5.751 1.06e-08 ***
+backsteps               -2.290e-02  9.488e-03  1.692e+03  -2.414  0.01588 *  
+conservation            -1.359e-02  2.494e-02  2.238e+02  -0.545  0.58628    
+fwdSteps                 5.826e-03  1.998e-03  1.447e+03   2.916  0.00361 ** 
+programmingExperience.L  4.994e-01  7.444e-02  1.846e+02   6.708 2.34e-10 ***
+programmingExperience.Q  1.487e-02  7.011e-02  1.784e+02   0.212  0.83228    
+programmingExperience.C  5.591e-02  6.723e-02  2.030e+02   0.832  0.40658    
+programmingExperience^4 -4.969e-02  6.278e-02  1.893e+02  -0.792  0.42962    
+backsteps:conservation  -1.234e-02  5.948e-03  1.701e+03  -2.074  0.03821 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) runScr bckstp cnsrvt fwdStp prgE.L prgE.Q prgE.C prgE^4
+runScore    -0.260                                                        
+backsteps   -0.096 -0.016                                                 
+conservatin  0.443  0.002 -0.160                                          
+fwdSteps    -0.362 -0.243 -0.207 -0.030                                   
+prgrmmngE.L -0.131 -0.124 -0.010  0.109  0.000                            
+prgrmmngE.Q  0.121  0.049  0.060  0.030 -0.019 -0.336                     
+prgrmmngE.C -0.066  0.005 -0.040  0.059  0.003  0.124 -0.210              
+prgrmmngE^4 -0.004  0.065  0.006  0.042 -0.025 -0.071  0.104 -0.083       
+bckstps:cns -0.156 -0.007  0.726 -0.272  0.033 -0.026  0.009 -0.025 -0.004
+> anova(consBackStepModel)
+Analysis of Variance Table of type III  with  Satterthwaite 
+approximation for degrees of freedom
+                       Sum Sq Mean Sq NumDF   DenDF F.value    Pr(>F)    
+runScore               35.687  35.687     1 1567.64  33.079 1.062e-08 ***
+backsteps               6.287   6.287     1 1691.97   5.828  0.015881 *  
+conservation            0.320   0.320     1  223.83   0.297  0.586276    
+fwdSteps                9.171   9.171     1 1447.04   8.501  0.003605 ** 
+programmingExperience  56.475  14.119     4  191.91  13.087 1.916e-09 ***
+backsteps:conservation  4.642   4.642     1 1700.73   4.302  0.038207 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+> 
+> 
+> #########################################
+> #       Final score per problem 
+> #  (similar results to delta score)
+> #########################################
+> 
+> 
+> tmp = codeProbSess
+> 
+> tmp = merge(tmp, 
++             demographics
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             schwartz
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             participantInfo
++             , by="participantId")
+> 
+> tmp = merge(tmp, 
++             countryMatch
++             , by.x=c("ipCountry"), by.y = c("ip.Country"),  all.x = TRUE)
+> 
+> tmp = merge(tmp, 
++             hofstede
++             , by="ctr", all.x = TRUE)
+> 
+> codeProbSessJoined = tmp
+> 
+> 
+> codeProbSessJoined <- transform(codeProbSessJoined,
++                                 participantId = as.factor(participantId),
++                                 gender = as.factor(gender),
++                                 isTimed = as.factor(isTimed),
++                                 pythonBefore = as.factor(pythonBefore),
++                                 problemNum = as.factor(problemNum),
++                                 education = ordered(education, levels=c("pre-high school", "high school", "professional school", "college", "PhD", "postdoctoral")),
++                                 programmingExperience = ordered(codeProbSessJoined$programmingExperience, levels = c("none", "3m", "6m", "1yr", "more")),
++                                 pythonTutorBefore = ordered(codeProbSessJoined$pythonTutorBefore, levels = c("0", "1-2", "3-5", "6+"))
++ )
+> 
+> # only for when they are working on the problems during the timed portion (not freely working on them at the end of the study)
+> codeProbSessJoinedAndFixed = codeProbSessJoined[codeProbSessJoined["isTimed"] == 1, ]
+> 
+> 
+> consScoreModel<-lmer(formula = score ~  
++                        + fwdSteps + backSteps * conservation
++                      + programmingExperience 
++                      + (1 | participantId)
++                      , data = codeProbSessJoinedAndFixed
++ ) 
+> 
+> consScoreModel
+Linear mixed model fit by REML ['merModLmerTest']
+Formula: score ~ +fwdSteps + backSteps * conservation + programmingExperience +      (1 | participantId)
+   Data: codeProbSessJoinedAndFixed
+REML criterion at convergence: 3210.592
+Random effects:
+ Groups        Name        Std.Dev.
+ participantId (Intercept) 0.6322  
+ Residual                  1.2070  
+Number of obs: 923, groups:  participantId, 531
+Fixed Effects:
+            (Intercept)                 fwdSteps                backSteps             conservation  programmingExperience.L  
+                0.61750                  0.01785                 -0.02561                 -0.03448                  0.85967  
+programmingExperience.Q  programmingExperience.C  programmingExperience^4   backSteps:conservation  
+               -0.00293                  0.05346                 -0.01144                 -0.01028  
+> summary(consScoreModel)
+Linear mixed model fit by REML 
+t-tests use  Satterthwaite approximations to degrees of freedom ['lmerMod']
+Formula: score ~ +fwdSteps + backSteps * conservation + programmingExperience +      (1 | participantId)
+   Data: codeProbSessJoinedAndFixed
+
+REML criterion at convergence: 3210.6
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.1376 -0.5928 -0.2515  0.2404  2.6809 
+
+Random effects:
+ Groups        Name        Variance Std.Dev.
+ participantId (Intercept) 0.3997   0.6322  
+ Residual                  1.4569   1.2070  
+Number of obs: 923, groups:  participantId, 531
+
+Fixed effects:
+                          Estimate Std. Error         df t value Pr(>|t|)    
+(Intercept)               0.617497   0.064637 638.100000   9.553  < 2e-16 ***
+fwdSteps                  0.017854   0.001424 882.800000  12.540  < 2e-16 ***
+backSteps                -0.025613   0.007273 883.900000  -3.521 0.000451 ***
+conservation             -0.034483   0.044479 539.700000  -0.775 0.438517    
+programmingExperience.L   0.859670   0.112864 519.100000   7.617 1.24e-13 ***
+programmingExperience.Q  -0.002930   0.110966 518.900000  -0.026 0.978945    
+programmingExperience.C   0.053456   0.111412 513.300000   0.480 0.631570    
+programmingExperience^4  -0.011441   0.108971 515.900000  -0.105 0.916424    
+backSteps:conservation   -0.010285   0.004734 890.900000  -2.172 0.030090 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) fwdStp bckStp cnsrvt prgE.L prgE.Q prgE.C prgE^4
+fwdSteps    -0.398                                                 
+backSteps    0.023 -0.530                                          
+conservatin  0.432  0.047 -0.105                                   
+prgrmmngE.L -0.034 -0.117  0.052  0.088                            
+prgrmmngE.Q  0.015  0.033  0.040  0.073 -0.156                     
+prgrmmngE.C -0.029  0.022 -0.017  0.018  0.002 -0.106              
+prgrmmngE^4 -0.032  0.017  0.039  0.027 -0.017  0.045 -0.061       
+bckStps:cns -0.058 -0.090  0.412 -0.331 -0.015 -0.051 -0.034 -0.011
+> anova(consScoreModel)
+Analysis of Variance Table of type III  with  Satterthwaite 
+approximation for degrees of freedom
+                        Sum Sq Mean Sq NumDF  DenDF F.value    Pr(>F)    
+fwdSteps               229.106 229.106     1 882.81 157.254 < 2.2e-16 ***
+backSteps               18.067  18.067     1 883.94  12.401 0.0004511 ***
+conservation             0.876   0.876     1 539.70   0.601 0.4385169    
+programmingExperience   87.059  21.765     4 513.38  14.939 1.475e-11 ***
+backSteps:conservation   6.876   6.876     1 890.86   4.719 0.0300899 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+> 

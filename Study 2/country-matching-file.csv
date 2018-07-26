@@ -1,0 +1,160 @@
+ctr,hofstede-country,ip-Country,demo-country,short-name
+Afghanistan,Afghanistan,Afghanistan,Afghanistan,Afghanistan
+Aland Islands,Aland Islands,#N/A,Aland Islands,Aland Islands
+American Samoa,American Samoa,#N/A,American Samoa,American Samoa
+Angola,Angola,#N/A,Angola,Angola
+Anguilla,Anguilla,#N/A,Anguilla,Anguilla
+Antarctica,Antarctica,#N/A,Antarctica,Antarctica
+Antigua And Barbuda,Antigua And Barbuda,#N/A,Antigua And Barbuda,Antigua And Barbuda
+Aruba,Aruba,#N/A,Aruba,Aruba
+AFE,Africa East,#N/A,#N/A,#N/A
+AFW,Africa West,#N/A,#N/A,#N/A
+ALB,Albania,Albania,Albania,Albania
+ALG,Algeria,Algeria,Algeria,Algeria
+AND,Andorra,#N/A,Andorra,Andorra
+ARA,Arab countries,#N/A,#N/A,#N/A
+ARG,Argentina,Argentina,Argentina,Argentina
+ARM,Armenia,Armenia,Armenia,Armenia
+AUL,Australia,Australia,Australia,Australia
+AUT,Austria,Austria,Austria,Austria
+AZE,Azerbaijan,Azerbaijan,Azerbaijan,Azerbaijan
+Bahamas,Bahamas,#N/A,Bahamas,Bahamas
+Bahrain,Bahrain,Bahrain,Bahrain,Bahrain
+BAN,Bangladesh,Bangladesh,Bangladesh,Bangladesh
+BLR,Belarus,Belarus,Belarus,Belarus
+BEL,Belgium,Belgium,Belgium,Belgium
+BEF,Belgium French,#N/A,#N/A,#N/A
+BEN,Belgium Netherl,#N/A,#N/A,#N/A
+BOS,Bosnia and Herzegovina,Bosnia and Herzegovina,Bosnia And Herzegovina,Bosnia And Herzegovina
+BRA,Brazil,Brazil,Brazil,Brazil
+BUL,Bulgaria,Bulgaria,Bulgaria,Bulgaria
+BUF,Burkina Faso,#N/A,#N/A,#N/A
+Bermuda,Bermuda,#N/A,Bermuda,Bermuda
+Burundi,Burundi,#N/A,Burundi,Burundi
+Belize,Belize,Belize,#N/A,#N/A
+Botswana,Botswana,Botswana,#N/A,#N/A
+CAN,Canada,Canada,Canada,Canada
+CAF,Canada French,#N/A,#N/A,#N/A
+CHL,Chile,Chile,Chile,Chile
+CHI,China,China,China,China
+COL,Colombia,Colombia,Colombia,Colombia
+COS,Costa Rica,Costa Rica,#N/A,#N/A
+CRO,Croatia,Croatia,Croatia,Croatia
+CYP,Cyprus,#N/A,#N/A,#N/A
+CZE,Czech Republic,Czechia,Czech Republic,Czech Republic
+Cambodia,Cambodia,Cambodia,#N/A,#N/A
+Cameroon,Cameroon,#N/A,Cameroon,Cameroon
+Cook Islands,Cook Islands,#N/A,Cook Islands,Cook Islands
+Cote Divoire,Cote Divoire,#N/A,Cote Divoire,Cote Divoire
+DEN,Denmark,Denmark,Denmark,Denmark
+DOM,Dominican Republic,Dominican Republic,Dominican Republic,Dominican Republic
+ECA,Ecuador,Ecuador,Ecuador,Ecuador
+EGY,Egypt,Egypt,Egypt,Egypt
+ETH,Ethiopia,Ethiopia,Ethiopia,Ethiopia
+SAL,El Salvador,#N/A,El Salvador,El Salvador
+EST,Estonia,Estonia,Estonia,Estonia
+Eritrea,Eritrea,#N/A,Eritrea,Eritrea
+FIN,Finland,Finland,#N/A,#N/A
+FRA,France,France,France,France
+GEO,Georgia,Georgia,Georgia,Georgia
+GER,Germany,Germany,Germany,Germany
+GEE,Germany East,#N/A,#N/A,#N/A
+GHA,Ghana,Ghana,Ghana,Ghana
+GBR,United Kingdom,United Kingdom,United Kingdom,UK
+GRE,Greece,Greece,Greece,Greece
+GUA,Guatemala,Guatemala,#N/A,#N/A
+Gibraltar,Gibraltar,Gibraltar,#N/A,#N/A
+Gabon,Gabon,#N/A,Gabon,Gabon
+Haiti,Haiti,Haiti,#N/A,#N/A
+HOK,Hong Kong,Hong Kong,Hong Kong,Hong Kong
+HUN,Hungary,Hungary,Hungary,Hungary
+ICE,Iceland,Iceland,Iceland,Iceland
+IND,India,India,India,India
+IDO,Indonesia,Indonesia,Indonesia,Indonesia
+IRA,Iran,Iran,Iran,Iran
+IRQ,Iraq,Iraq,Iraq,Iraq
+IRE,Ireland,Ireland,#N/A,#N/A
+ISR,Israel,Israel,Israel,Israel
+ITA,Italy,Italy,Italy,Italy
+JAM,Jamaica,#N/A,#N/A,#N/A
+JPN,Japan,Japan,Japan,Japan
+JOR,Jordan,Hashemite Kingdom of Jordan,#N/A,#N/A
+KOR,Republic of Korea,Republic of Korea,Republic of Korea,Republic of Korea
+KYR,Kyrgyz Rep,Kyrgyzstan,#N/A,#N/A
+Kazakhstan,Kazakhstan,Kazakhstan,#N/A,#N/A
+Kenya,Kenya,Kenya,Kenya,Kenya
+LAT,Latvia,Latvia,Latvia,Latvia
+LIT,Republic of Lithuania,Republic of Lithuania,Lithuania,Lithuania
+LUX,Luxembourg,#N/A,Luxembourg,Luxembourg
+Lebanon,Lebanon,Lebanon,#N/A,#N/A
+Libya,Libya,Libya,#N/A,#N/A
+MAC,Macedonia Rep,Macedonia,Macedonia,Macedonia
+MAL,Malaysia,Malaysia,Malaysia,Malaysia
+MLI,Mali,Mali,#N/A,#N/A
+MLT,Malta,Malta,#N/A,#N/A
+MEX,Mexico,Mexico,Mexico,Mexico
+MOL,Moldova,Republic of Moldova,Republic of Moldova,Republic of Moldova
+MNG,Montenegro,Montenegro,#N/A,#N/A
+MOR,Morocco,Morocco,#N/A,#N/A
+Macao,Macao,Macao,#N/A,#N/A
+Madagascar,Madagascar,Madagascar,#N/A,#N/A
+Malawi,Malawi,Malawi,#N/A,#N/A
+Mauritius,Mauritius,Mauritius,#N/A,#N/A
+Monaco,Monaco,Monaco,#N/A,#N/A
+Mozambique,Mozambique,Mozambique,#N/A,#N/A
+Myanmar [Burma],Myanmar [Burma],Myanmar [Burma],#N/A,#N/A
+NET,Netherlands,Netherlands,Netherlands,Netherlands
+NZL,New Zealand,New Zealand,New Zealand,New Zealand
+NIG,Nigeria,Nigeria,Nigeria,Nigeria
+NOR,Norway,Norway,Norway,Norway
+Nepal,Nepal,Nepal,Nepal,Nepal
+Niger,Niger,Niger,#N/A,#N/A
+Northern Mariana Islands,Northern Mariana Islands,#N/A,Northern Mariana Islands,Northern Mariana Islands
+Oman,Oman,Oman,#N/A,#N/A
+PAK,Pakistan,Pakistan,Pakistan,Pakistan
+PAN,Panama,Panama,Panama,Panama
+PER,Peru,Peru,Peru,Peru
+PHI,Philippines,Philippines,Philippines,Philippines
+POL,Poland,Poland,Poland,Poland
+POR,Portugal,Portugal,Portugal,Portugal
+PUE,Puerto Rico,#N/A,Puerto Rico,Puerto Rico
+Paraguay,Paraguay,Paraguay,#N/A,#N/A
+ROM,Romania,Romania,Romania,Romania
+RUS,Russia,Russia,Russian Federation,Russia
+RWA,Rwanda,#N/A,#N/A,#N/A
+Reunion,Reunion,Réunion,Reunion,Reunion
+SAU,Saudi Arabia,Saudi Arabia,#N/A,#N/A
+SER,Serbia,Serbia,Serbia,Serbia
+SIN,Singapore,Singapore,Singapore,Singapore
+SLK,Slovak Republic,Slovak Republic,Slovakia,Slovakia
+SLV,Slovenia,Slovenia,#N/A,#N/A
+SAF,South Africa,South Africa,South Africa,South Africa
+SAW,South Africa white,#N/A,#N/A,#N/A
+SPA,Spain,Spain,Spain,Spain
+SUR,Suriname,Suriname,#N/A,#N/A
+SWE,Sweden,Sweden,Sweden,Sweden
+SWI,Switzerland,Switzerland,Switzerland,Switzerland
+SWF,Switzerland French,#N/A,#N/A,#N/A
+SWG,Switzerland German,#N/A,#N/A,#N/A
+Senegal,Senegal,Senegal,#N/A,#N/A
+Sri Lanka,Sri Lanka,Sri Lanka,Sri Lanka,Sri Lanka
+Saint Helena,Saint Helena,#N/A,Saint Helena,Saint Helena
+Seychelles,Seychelles,#N/A,Seychelles,Seychelles
+TAI,Taiwan,Taiwan,Taiwan,Taiwan
+TAN,Tanzania,Tanzania,#N/A,#N/A
+THA,Thailand,Thailand,Thailand,Thailand
+TRI,Trinidad and Tobago,#N/A,#N/A,#N/A
+TUR,Turkey,Turkey,Turkey,Turkey
+The Democratic Republic Of The Congo,The Democratic Republic Of The Congo,#N/A,The Democratic Republic Of The Congo,The Democratic Republic Of The Congo
+Tonga,Tonga,Tonga,Tonga,Tonga
+Tunisia,Tunisia,Tunisia,Tunisia,Tunisia
+USA,United States,United States,United States,USA
+UGA,Uganda,Uganda,Uganda,Uganda
+UKR,Ukraine,Ukraine,Ukraine,Ukraine
+URU,Uruguay,Uruguay,Uruguay,Uruguay
+United Arab Emirates,United Arab Emirates,United Arab Emirates,#N/A,#N/A
+Uzbekistan,Uzbekistan,Uzbekistan,Uzbekistan,Uzbekistan
+VEN,Venezuela,Venezuela,Venezuela,Venezuela
+VIE,Vietnam,Vietnam,Viet Nam,Viet Nam
+ZAM,Zambia,Zambia,#N/A,#N/A
+ZIM,Zimbabwe,Zimbabwe,Zimbabwe,Zimbabwe
