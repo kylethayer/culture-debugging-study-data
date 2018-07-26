@@ -1,0 +1,101 @@
+﻿Country,Random Session,numViz,edits,edit type,dupes,Length,Notes
+Israel,1,4,3,small,FALSE,long,"list modification, if else"
+Israel,2,1,0,,FALSE,long,game with classes
+Israel,3,2,1,debug,FALSE,12,function with for loop
+Israel,4,6,5,build program,FALSE,3 to 12,generic sum with ifs and loop
+Israel,5,3,2,replace,TRUE,3 to 23,"find_root, array edit, ist comprehension"
+Israel,6,3,2,"small edits, replace",FALSE,18,print_database
+Israel,7,4,,,,,***Missing Data?***
+Israel,8,3,2,change text test,FALSE,23,count_words_naive
+Israel,9,18,16,small edits,FALSE,3 to 5,simple list manipulation
+Israel,10,2,1,remove function wraper,FALSE,9 to 10,power function with iterated squaring
+Israel,11,2,1,very small edit,FALSE,49,polygon2D
+Israel,12,1,0,,FALSE,18,create_dict
+Israel,13,1,0,,FALSE,3,x = 5; x
+Israel,14,1,0,,FALSE,6,recursive array manip
+Israel,15,1,0,,FALSE,14,steady_state
+Israel,16,2,1,very small edit,FALSE,14,recursive max
+Israel,17,9,8,small to medium edits,FALSE,23 to 27,multi_merge_v2
+Israel,18,3,2,small edits,FALSE,15,choose_sets (recursive)
+Israel,19,1,0,,FALSE,19,find_root
+Israel,20,1,0,,FALSE,18,win() Some sort of game testing out each move?
+Israel,21,9,3,modifications to range,FALSE,9,function that gets user input and finds cumulative sum
+Israel,22,,,,,,
+Israel,23,,,,,,
+Israel,24,,,,,,
+Israel,25,,,,,,
+Australia,1,2,1,small modify to split code line,FALSE,7 to 8,length sort (use sorted function)
+Australia,2,12,11,smalle to medium modifications,FALSE,159 to 173,maze solver
+Australia,3,1,0,,FALSE,15,unique_long_words
+Australia,4,1,0,,FALSE,10,long_high_word
+Australia,5,2,1,change test param,FALSE,5,binary something?
+Australia,6,2,0,,FALSE,7,while loop with random roll
+Australia,7,20,19,"small changes, add test case, modifications",FALSE,9,wordlist (split with for loops)
+Australia,8,4,3,"replace, small changes",FALSE,19 to 14,"function with for loops and lists, code with for loop and list append"
+Australia,9,22,0,,FALSE,19,reverse list
+Australia,10,5,4,"replace, small changes",FALSE,14,"long_high_word, wordlist, sorted_words"
+Australia,11,3,2,small to med edits,FALSE,21,combinations (of string) with yield and tuple
+Australia,12,1,0,,FALSE,33,dice simulator
+Australia,13,1,0,,TRUE,16,string processing with for loops
+Australia,14,2,1,small edit,FALSE,12,wordlist
+Australia,15,1,0,,FALSE,16,very close to string prcessing for Australia 13
+Australia,16,4,3,"replace, change inputs",FALSE,9 to 11,"rBinarySearch, search3"
+Australia,17,24,23,"replace, small modifications, change params",TRUE,1 to 7,"single line programs,   lists, string indexing, dictionaries, simple functions with ifs"
+Australia,18,2,1,small modification,TRUE,2 to 3,array indexing
+Australia,19,4,3,smallish modify ,FALSE,93,card game
+Australia,20,2,1,small modify ,FALSE,22,selecitonSort
+Australia,21,,,,,,
+Australia,22,,,,,,
+Australia,23,,,,,,
+Australia,24,,,,,,
+Australia,25,,,,,,
+India,1,3,2,"replace, small change",TRUE,10 to 15,"string processing, for loops and ifs"
+India,2,4,1,replace,FALSE,6 to 10,"cumulative sum, fibbonacci"
+India,3,1,0,,FALSE,23,coordinate class w/ commented out code
+India,4,1,0,,TRUE,3,array append
+India,5,2,1,small edit,FALSE,6 to 7,if else
+India,6,10,4,replace,FALSE,2 to 6,"while loop, test input,  input with for loop"
+India,7,7,4,small edits ,FALSE,15,swapSort
+India,8,8,5,"small edits, delete comments, add comments",FALSE,31,number guessing
+India,9,8,7,"add or remove debugging output, replace",FALSE,8 to 11,"factorise, factorial"
+India,10,3,2,small fix,FALSE,4 to 5,while loop
+India,11,1,0,,FALSE,2,single print
+India,12,9,7,replace or small modify,TRUE,1,"single prints, simple loop"
+India,13,3,2,replace,TRUE,4 to 5,"for loop sum, for loop find smallest, while loop print"
+India,14,2,1,small edit,FALSE,6,simple function for array
+India,15,2,1,small edit,FALSE,5,for loop with printing
+India,16,1,0,,TRUE,1,single print for hex
+India,17,2,1,smalle edit: get user input,FALSE,3,print loop
+India,18,1,0,,FALSE,6,simple example function with  bug
+India,19,1,0,,TRUE,1,simple input
+India,20,2,0,,TRUE,2,print math.floor
+India,21,,,,,,
+India,22,,,,,,
+India,23,,,,,,
+India,24,,,,,,
+India,25,,,,,,
+Russia,1,50,6,"big expand, smaller edits",FALSE,9 to 12,user input with while loop
+Russia,2,1,,,FALSE,2,***Missing Data?***
+Russia,3,2,1,small edits,FALSE,16,two different for loops with if statements
+Russia,4,10,0,,FALSE,10,while and for loops over lists with user input
+Russia,5,1,,,FALSE,16,***Missing Data?***
+Russia,6,1,0,,FALSE,11,neseted loops with lists
+Russia,7,14,,,FALSE,13,***Missing Data?***
+Russia,8,12,6,"small edits, turn into function",FALSE,1 to 6,split and enumarte
+Russia,9,2,1,change test parameters,FALSE,15,findroot3
+Russia,10,1,,,FALSE,6,***Missing Data?***
+Russia,11,1,,,FALSE,28,***Missing Data?***
+Russia,12,3,2,small edits,FALSE,27,near_golden
+Russia,13,3,2,add variables needed,FALSE,13,tracking interest rate
+Russia,14,5,4,"small changes, add test case, modifications",FALSE,6,simple list test
+Russia,15,1,0,,FALSE,2,create gui
+Russia,16,5,4,small additions,FALSE,5 to 11,simple array
+Russia,17,1,0,,TRUE,11,simple array vs tuple loops
+Russia,18,39,2,small edits,FALSE,18,while loop on user input with for loops (looks a little comlex)
+Russia,19,8,7,small to medium edits,FALSE,16 to 20,checkio ??? Maybe hash value
+Russia,20,1,0,,TRUE,11,tuple list processsing
+Russia,21,3,2,replace,TRUE,8 to 60,"recursive factorial, staff class, person class"
+Russia,22,5,4,many replace some small modifications,FALSE,6 to 11,"lamda fn, sum_every_other_number, fibonacci, "
+Russia,23,1,0,,FALSE,8,getOneMillion (loop)
+Russia,24,2,0,,FALSE,22,accumulator
+Russia,25,1,0,,TRUE,17,Fibbonnacci (with mem table)
