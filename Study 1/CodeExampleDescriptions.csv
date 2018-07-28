@@ -1,4 +1,4 @@
-﻿Country,Random Session,numViz,edits,edit type,dupes,Length,Notes
+﻿Country,Random Session,numViz,edits,edit type,any duplication of other user's code,Length,Notes
 Israel,1,4,3,small,FALSE,long,"list modification, if else"
 Israel,2,1,0,,FALSE,long,game with classes
 Israel,3,2,1,debug,FALSE,12,function with for loop
