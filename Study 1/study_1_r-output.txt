@@ -1,4 +1,54 @@
-> study1Data = read.csv(file="study_1_data.csv")
+> library(lmerTest)
+Loading required package: Matrix
+Loading required package: lme4
+
+Attaching package: ‘lmerTest’
+
+The following object is masked from ‘package:lme4’:
+
+    lmer
+
+The following object is masked from ‘package:stats’:
+
+    step
+
+Warning message:
+package ‘lmerTest’ was built under R version 3.4.4 
+> library(MuMIn)
+Warning message:
+package ‘MuMIn’ was built under R version 3.4.4 
+> 
+> #optional set working directory
+> #setwd("")
+> 
+> 
+> #Note: the data is stored in 11 files due to the github file size limit
+> 
+> study1DataPart1 = read.csv(file="study_1_data_part_01.csv")
+> study1DataPart2 = read.csv(file="study_1_data_part_02.csv")
+> study1DataPart3 = read.csv(file="study_1_data_part_03.csv")
+> study1DataPart4 = read.csv(file="study_1_data_part_04.csv")
+> study1DataPart5 = read.csv(file="study_1_data_part_05.csv")
+> study1DataPart6 = read.csv(file="study_1_data_part_06.csv")
+> study1DataPart7 = read.csv(file="study_1_data_part_07.csv")
+> study1DataPart8 = read.csv(file="study_1_data_part_08.csv")
+> study1DataPart9 = read.csv(file="study_1_data_part_09.csv")
+> study1DataPart10 = read.csv(file="study_1_data_part_10.csv")
+> study1DataPart11 = read.csv(file="study_1_data_part_11.csv")
+> 
+> study1Data = rbind(study1DataPart1, study1DataPart2)
+> study1Data = rbind(study1Data, study1DataPart3)
+> study1Data = rbind(study1Data, study1DataPart4)
+> study1Data = rbind(study1Data, study1DataPart5)
+> study1Data = rbind(study1Data, study1DataPart6)
+> study1Data = rbind(study1Data, study1DataPart7)
+> study1Data = rbind(study1Data, study1DataPart8)
+> study1Data = rbind(study1Data, study1DataPart9)
+> study1Data = rbind(study1Data, study1DataPart10)
+> study1Data = rbind(study1Data, study1DataPart11)
+> 
+> # optional save together as one large csv file
+> #write.csv(study1Data, file="study_1_data_all.csv")
 > 
 > study1Data <- transform(study1Data,
 +                  UUID = as.factor(UUID),
@@ -69,8 +119,10 @@
 > 
 > backStepModel
 Linear mixed model fit by REML ['merModLmerTest']
-Formula: vizBackwardsSteps ~ pdi + vizTime + vizTotalSteps + forwardSteps +      sessionTotalForwadStepsInViz + sessionSumCodeEditDistance +  
-    sessionAnyEdits + sessionNumVizSessions + vizCodeCharLength +      vizCodeEditDistance + vizCodeWasEdited + vizSessionNum +  
+Formula: vizBackwardsSteps ~ pdi + vizTime + vizTotalSteps + forwardSteps +  
+    sessionTotalForwadStepsInViz + sessionSumCodeEditDistance +  
+    sessionAnyEdits + sessionNumVizSessions + vizCodeCharLength +  
+    vizCodeEditDistance + vizCodeWasEdited + vizSessionNum +  
     vizSteps.Call + vizSteps.Exception + sessionAnyDupCode +      (1 | UUID)
    Data: scaledstudy1Data
 REML criterion at convergence: 6039938
@@ -80,19 +132,25 @@ Random effects:
  Residual             2.723   
 Number of obs: 1236863, groups:  UUID, 78369
 Fixed Effects:
-                 (Intercept)                           pdi                       vizTime                 vizTotalSteps                  forwardSteps  
-                    0.954695                     -0.051698                      0.231482                      0.024399                      1.249336  
-sessionTotalForwadStepsInViz    sessionSumCodeEditDistance           sessionAnyEditsTRUE         sessionNumVizSessions             vizCodeCharLength  
-                   -0.017480                      0.015254                      0.067181                      0.030245                      0.154575  
-         vizCodeEditDistance          vizCodeWasEditedTrue                 vizSessionNum                 vizSteps.Call            vizSteps.Exception  
-                   -0.041360                     -0.002861                      0.005241                      0.006002                      0.063288  
+                 (Intercept)                           pdi                       vizTime  
+                    0.954695                     -0.051698                      0.231482  
+               vizTotalSteps                  forwardSteps  sessionTotalForwadStepsInViz  
+                    0.024399                      1.249336                     -0.017480  
+  sessionSumCodeEditDistance           sessionAnyEditsTRUE         sessionNumVizSessions  
+                    0.015254                      0.067181                      0.030245  
+           vizCodeCharLength           vizCodeEditDistance          vizCodeWasEditedTrue  
+                    0.154575                     -0.041360                     -0.002861  
+               vizSessionNum                 vizSteps.Call            vizSteps.Exception  
+                    0.005241                      0.006002                      0.063288  
        sessionAnyDupCodeTRUE  
                    -0.042029  
 > summary(backStepModel)
 Linear mixed model fit by REML 
 t-tests use  Satterthwaite approximations to degrees of freedom ['lmerMod']
-Formula: vizBackwardsSteps ~ pdi + vizTime + vizTotalSteps + forwardSteps +      sessionTotalForwadStepsInViz + sessionSumCodeEditDistance +  
-    sessionAnyEdits + sessionNumVizSessions + vizCodeCharLength +      vizCodeEditDistance + vizCodeWasEdited + vizSessionNum +  
+Formula: vizBackwardsSteps ~ pdi + vizTime + vizTotalSteps + forwardSteps +  
+    sessionTotalForwadStepsInViz + sessionSumCodeEditDistance +  
+    sessionAnyEdits + sessionNumVizSessions + vizCodeCharLength +  
+    vizCodeEditDistance + vizCodeWasEdited + vizSessionNum +  
     vizSteps.Call + vizSteps.Exception + sessionAnyDupCode +      (1 | UUID)
    Data: scaledstudy1Data
 
@@ -121,9 +179,9 @@ sessionAnyEditsTRUE           6.718e-02  9.736e-03  1.028e+06   6.900 5.19e-12 *
 sessionNumVizSessions         3.025e-02  6.369e-03  1.092e+06   4.749 2.05e-06 ***
 vizCodeCharLength             1.546e-01  3.295e-03  8.817e+05  46.910  < 2e-16 ***
 vizCodeEditDistance          -4.136e-02  2.671e-03  1.237e+06 -15.485  < 2e-16 ***
-vizCodeWasEditedTrue         -2.861e-03  6.591e-03  1.237e+06  -0.434 0.664252    
+vizCodeWasEditedTrue         -2.861e-03  6.591e-03  1.237e+06  -0.434 0.664254    
 vizSessionNum                 5.241e-03  4.285e-03  1.182e+06   1.223 0.221251    
-vizSteps.Call                 6.002e-03  3.028e-03  1.209e+06   1.982 0.047431 *  
+vizSteps.Call                 6.002e-03  3.028e-03  1.209e+06   1.982 0.047430 *  
 vizSteps.Exception            6.329e-02  2.589e-03  1.237e+06  24.446  < 2e-16 ***
 sessionAnyDupCodeTRUE        -4.203e-02  9.041e-03  5.094e+05  -4.649 3.34e-06 ***
 ---
@@ -138,27 +196,28 @@ Analysis of Variance Table of type III  with  Satterthwaite
 approximation for degrees of freedom
                               Sum Sq Mean Sq NumDF   DenDF F.value    Pr(>F)    
 pdi                              621     621     1   47487      84 < 2.2e-16 ***
-vizTime                        52566   52566     1 1191569    7090 < 2.2e-16 ***
+vizTime                        52566   52566     1 1191568    7090 < 2.2e-16 ***
 vizTotalSteps                    408     408     1 1210860      55 1.206e-13 ***
 forwardSteps                 1326190 1326190     1 1235156  178878 < 2.2e-16 ***
-sessionTotalForwadStepsInViz      94      94     1 1078665      13 0.0003806 ***
-sessionSumCodeEditDistance       121     121     1 1054909      16 5.176e-05 ***
-sessionAnyEdits                  353     353     1 1027554      48 5.189e-12 ***
-sessionNumVizSessions            167     167     1 1091564      23 2.048e-06 ***
-vizCodeCharLength              16315   16315     1  881692    2201 < 2.2e-16 ***
+sessionTotalForwadStepsInViz      94      94     1 1078663      13 0.0003806 ***
+sessionSumCodeEditDistance       121     121     1 1054907      16 5.176e-05 ***
+sessionAnyEdits                  353     353     1 1027552      48 5.189e-12 ***
+sessionNumVizSessions            167     167     1 1091562      23 2.048e-06 ***
+vizCodeCharLength              16315   16315     1  881688    2201 < 2.2e-16 ***
 vizCodeEditDistance             1778    1778     1 1236819     240 < 2.2e-16 ***
-vizCodeWasEdited                   1       1     1 1236691       0 0.6642522    
-vizSessionNum                     11      11     1 1181810       1 0.2212513    
-vizSteps.Call                     29      29     1 1208655       4 0.0474305 *  
-vizSteps.Exception              4431    4431     1 1236685     598 < 2.2e-16 ***
-sessionAnyDupCode                160     160     1  509415      22 3.344e-06 ***
+vizCodeWasEdited                   1       1     1 1236692       0 0.6642536    
+vizSessionNum                     11      11     1 1181810       1 0.2212514    
+vizSteps.Call                     29      29     1 1208655       4 0.0474303 *  
+vizSteps.Exception              4431    4431     1 1236686     598 < 2.2e-16 ***
+sessionAnyDupCode                160     160     1  509411      22 3.344e-06 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
 > r.squaredGLMM(backStepModel)
       R2m       R2c 
-0.1795185 0.2770619 
-
+0.1795185 0.2770618 
+> 
+> 
+> 
 > #compare 2 countries
 > Israel = study1Data[study1Data["Country"] == "Israel", ]
 > sd(Israel[, c("vizBackwardsSteps")])
@@ -180,3 +239,5 @@ alternative hypothesis: true difference in means is not equal to 0
 sample estimates:
  mean in group India mean in group Israel 
            0.3799245            1.7166544 
+
+> 

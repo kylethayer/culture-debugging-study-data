@@ -4,8 +4,32 @@ library(MuMIn)
 #optional set working directory
 #setwd("")
 
-study1Data = read.csv(file="study_1_data.csv")
+#Note: the data is stored in 11 files due to the github file size limit
 
+study1DataPart1 = read.csv(file="study_1_data_part_01.csv")
+study1DataPart2 = read.csv(file="study_1_data_part_02.csv")
+study1DataPart3 = read.csv(file="study_1_data_part_03.csv")
+study1DataPart4 = read.csv(file="study_1_data_part_04.csv")
+study1DataPart5 = read.csv(file="study_1_data_part_05.csv")
+study1DataPart6 = read.csv(file="study_1_data_part_06.csv")
+study1DataPart7 = read.csv(file="study_1_data_part_07.csv")
+study1DataPart8 = read.csv(file="study_1_data_part_08.csv")
+study1DataPart9 = read.csv(file="study_1_data_part_09.csv")
+study1DataPart10 = read.csv(file="study_1_data_part_10.csv")
+study1DataPart11 = read.csv(file="study_1_data_part_11.csv")
+
+study1Data = rbind(study1DataPart1, study1DataPart2)
+study1Data = rbind(study1Data, study1DataPart3)
+study1Data = rbind(study1Data, study1DataPart4)
+study1Data = rbind(study1Data, study1DataPart5)
+study1Data = rbind(study1Data, study1DataPart6)
+study1Data = rbind(study1Data, study1DataPart7)
+study1Data = rbind(study1Data, study1DataPart8)
+study1Data = rbind(study1Data, study1DataPart9)
+study1Data = rbind(study1Data, study1DataPart10)
+study1Data = rbind(study1Data, study1DataPart11)
+
+# calculate forwardSteps and sessionTotalForwadStepsInViz from other fields
 study1Data <- transform(study1Data,
                  UUID = as.factor(UUID),
                  forwardSteps = stepsInViz - vizBackwardsSteps
@@ -17,6 +41,15 @@ forwardSums <- transform(forwardSums,
      sessionTotalForwadStepsInViz = forwardSteps
 )
 study1Data = merge(study1Data, forwardSums[c("SessionId", "sessionTotalForwadStepsInViz")], by="SessionId")
+
+
+###############################################
+# optional save together as one large csv file
+
+#write.csv(study1Data, file="study_1_data_all.csv")
+
+###############################################
+
 
 #count final UUIDS
 study1DataWithPDI = study1Data[!is.na(study1Data["pdi"]), ]
