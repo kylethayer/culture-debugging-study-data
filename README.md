@@ -1,7 +1,7 @@
 Supplemental Materials for the paper:
 ======
 
-  Kyle Thayer, Philip Guo, and Katharina Reinecke [http://www.kylethayer.com/#/publications/culture_debuggers "The Impact of Culture on Learner Behavior in Visual Debuggers"], IEEE Symposium on Visual Languages and Human-Centric Computing (VL/HCC), 2018.
+  Kyle Thayer, Philip Guo, and Katharina Reinecke ["The Impact of Culture on Learner Behavior in Visual Debuggers"](http://www.kylethayer.com/#/publications/culture_debuggers), IEEE Symposium on Visual Languages and Human-Centric Computing (VL/HCC), 2018.
 
    
 Study 1 folder contains:
