@@ -35,7 +35,7 @@ Study 2 folder contains:
 
 ### Data files
 
-  * many csv files plus follow_up_questions.txt - this is the data from the second study. Description of fields coming soon.
+  * many csv files plus follow_up_questions.txt - this is the data from the second study. [File and Field Descriptions](Study%202/fileAndFieldDescriptions.md) 
 
   
 ### Statistics files
