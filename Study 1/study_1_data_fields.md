@@ -52,38 +52,36 @@ Each row represents one code visualization execution. The **bold** fields are th
 
 25. **"vizCodeEditDistance"**: The edit distance from the previous code visualization execution
 
-26. **"vizCode"**
+26. **"sessionAnyEdits"**: Boolean. Was the code ever edited during the browser session?
 
-27. **"sessionAnyEdits"**: Boolean. Was the code ever edited during the browser session?
+27. "sessionNumVizSessions": How many code execution visualization sessions were there in the browser session.
 
-28. "sessionNumVizSessions": How many code execution visualization sessions were there in the browser session.
+28. "sessionCharLengthRangeDelta": For a browser session, the difference between the shortest and longest code (measured in characters).
 
-29. "sessionCharLengthRangeDelta": For a browser session, the difference between the shortest and longest code (measured in characters).
+29. "sessionTotalStepsInViz": How many total steps were taken in all code execution visualizations in the browser session.
 
-30. "sessionTotalStepsInViz": How many total steps were taken in all code execution visualizations in the browser session.
+30. "sessionSumCodeEditDistance": Sum of all edit distances of the code durring the browser session.
 
-31. "sessionSumCodeEditDistance": Sum of all edit distances of the code durring the browser session.
+31. "duplicateCodeCount": 
 
-32. "duplicateCodeCount": 
+32. "sessionAnyDupCode": Was any code run this browser session identical to code run by another user.
 
-33. "sessionAnyDupCode": Was any code run this browser session identical to code run by another user.
+33. "Student.teacher.ratio": Student teacher ration of the IP address country. Data source: https://data.worldbank.org/indicator/SE.PRM.ENRL.TC.ZS
 
-34. "Student.teacher.ratio": Student teacher ration of the IP address country. Data source: https://data.worldbank.org/indicator/SE.PRM.ENRL.TC.ZS
+34. "GDP.per.capita": Gross Domestic Product per capita of the IP address. Data source https://data.worldbank.org/indicator/NY.GDP.PCAP.CD
 
-35. "GDP.per.capita": Gross Domestic Product per capita of the IP address. Data source https://data.worldbank.org/indicator/NY.GDP.PCAP.CD
+35. "ctr": Country based on IP address. Should be equivalent to "Country", though could be different string (e.g., "United States" vs. "USA").
 
-36. "ctr": Country based on IP address. Should be equivalent to "Country", though could be different string (e.g., "United States" vs. "USA").
+36. **"pdi"**: Hofstede's Power Distance Indicator for the country. Data source: https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
 
-37. **"pdi"**: Hofstede's Power Distance Indicator for the country. Data source: https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
+37. "idv": Hofstede's Individualism score for the country. Data source: https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
 
-38. "idv": Hofstede's Individualism score for the country. Data source: https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
+38. "mas": Hofstede's Masculinity score for the country. Data source: https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
 
-39. "mas": Hofstede's Masculinity score for the country. Data source: https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
+39. "uai": Hofstede's Uncertainty Avoidance score for the country. Data source: https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
 
-40. "uai": Hofstede's Uncertainty Avoidance score for the country. Data source: https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
+40. "ltowvs": Hofstede's Long-Term Orientation score for the country. Data source: https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
 
-41. "ltowvs": Hofstede's Long-Term Orientation score for the country. Data source: https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
-
-42. "ivr": Hofstede's Indulgent vs. Restraint score for the country. Data source: https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
+41. "ivr": Hofstede's Indulgent vs. Restraint score for the country. Data source: https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
 
 
