@@ -67,18 +67,20 @@ We also did some other statistics comparing Hofstede's Power Distance (hofstede-
 Have you read and understood the instructions above?"- "I read and understood.", "I read and did not understand.", "I did not read, but understand PythonTutor.", "I did not read, and do not understand PythonTutor."
 
 ## follow_up_questions.csv
+Truncated version of follow_up_questions.txt
 1. participantId
 2. how_easy_was_pt
 3. how_helpful_was_pt
 4. how_important_step_backward
 
 ## follow_up_questions.txt
-1. 
-2. 
-3. 
-4. 
-5.
-6.
+1. participantId
+2. Answer to "Describe in two or more sentences how you used the code execution view
+to debug your code (or why you did not use that view)?"
+3. Answer to "How easy was it to use the Python Tutor Interface?"
+4. Answer to "How helpful did you find the Python Tutor Interface?"
+5. Answer to "Describe in two or more sentences why you stepped backward in the execution?"
+6. Answer to "How important do you think the ability to step backward is in solving coding problems? "
 
 ## hofstede-fixed.csv
 1. ctr	
@@ -91,12 +93,12 @@ Have you read and understood the instructions above?"- "I read and understood.",
 8. ivr
 
 ## participantInfo.csv
-1. participantId
-2. time
-3. userAgent
-4. ipCountry
-5. ipCity
-6. contentLanguage
+1. participantId- The id of this participant
+2. time - the time they started the task
+3. userAgent - info on the user browser / machine
+4. ipCountry - country user in (based on IP)
+5. ipCity - city user in (based on IP)
+6. contentLanguage - not used in this study
 
 ## schwartz_survey.csv
 1. schwartzSurveyId
