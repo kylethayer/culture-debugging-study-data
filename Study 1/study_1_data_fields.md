@@ -54,13 +54,13 @@ Each row represents one code visualization execution. The **bold** fields are th
 
 26. **"sessionAnyEdits"**: Boolean. Was the code ever edited during the browser session?
 
-27. "sessionNumVizSessions": How many code execution visualization sessions were there in the browser session.
+27. **"sessionNumVizSessions"**: How many code execution visualization sessions were there in the browser session.
 
 28. "sessionCharLengthRangeDelta": For a browser session, the difference between the shortest and longest code (measured in characters).
 
 29. "sessionTotalStepsInViz": How many total steps were taken in all code execution visualizations in the browser session.
 
-30. "sessionSumCodeEditDistance": Sum of all edit distances of the code durring the browser session.
+30. **"sessionSumCodeEditDistance"**: Sum of all edit distances of the code durring the browser session.
 
 31. "duplicateCodeCount": How many times was code run this browser session identical to code run by another user.
 
