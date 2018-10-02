@@ -14,7 +14,7 @@ Each row represents one code visualization execution. The **bold** fields are th
 
 6. **"UUID"**: Unique ID for a user. This ID is stable across browser sessions when using the same browser and same machine.
 
-7. **"stepsInViz"**: The total number of steps taken in the code visualization execution. This is used in conjuction with vizBackwardsSteps to calculate the number of forward steps.
+7. **"stepsInViz"**: The total number of steps taken in the code visualization execution. This is used in conjuction with **vizBackwardsSteps** to calculate the number of **forwardSteps**  and **sessionTotalForwadStepsInViz**.
 
 8. "stepsAtStart": The number of consecutive steps viewed at start of the visualization (eg. if they viewed steps [1, 2, 3, 4, 5, 2, 3] that is 5 steps at start. If they viewed [2, 3, 4], that is 0 steps at start)
 
