@@ -1,7 +1,6 @@
 # Description of files and fields for Study 2
 
-code_run_scores.csv:
------
+## code_run_scores.csv:
 
 1. codeRunId
 2. runScore
