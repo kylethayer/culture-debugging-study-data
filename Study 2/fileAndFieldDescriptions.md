@@ -1,25 +1,31 @@
 # Description of files and fields for Study 2
 
-Overview of relations. Participants (participantInfo.csv) came to the site and took the 
+Overview of relations. Participants (participantInfo.csv) came to the site and took the demographics survey (demographics.csv) and value survey (schwartz_survey.csv). We also tied thier country to the Hofstede cultural values (hofstede-fixed.csv) through the country-matching-file.csv (since country names were encoded differently). Participants proceeded on to the instructions and answered a couple more questions in demographics.csv. 
+
+Participants perfomed two debugging tasks (coding_problem_session.csv). In each debugging task they could execute the code and visualize the execution multiple times (code_runs.csv) which we scored for how many tests teh code passed (code_runs.csv).
+
+After they finished hte tasks, they answered some follow-up questions (follow_up_questions.csv and follow_up_questions.txt).
+
+We also did some other statistics comparing Hofstede's Power Distance (hofstede-fixed.csv) with GDP per capita (world-bank gdp per capita.csv) and national student-teacher ratio (world-bank pupil-teacher ratio.csv).
 
 ## code_run_scores.csv
 
-1. codeRunId: 
-2. runScore: 
-3. nextRunScore: 
-4. deltaRunScore: 
+1. codeRunId: Which code run this score is for.
+2. runScore: The score for the code execution (how many tests passed)
+3. nextRunScore: The score of the code execution done next (or blank if there was no next one)
+4. deltaRunScore: nextRunScore - runScore
 
 ## code_runs.csv
 
-1. codeRunId
-2. codeProbId
-3. codeRunNum
-4. numStepsAvailable
-5. isError
-6. isUserStarted
-7. backsteps
-8. fwdSteps
-9. stepRevisits
+1. codeRunId: The id for this code run
+2. codeProbId: Which coding_problem_session this code run happened during 
+3. codeRunNum: which code run this was (e.g., 1 -> first, 2 -> second)
+4. numStepsAvailable: The number of steps executed when the code ran
+5. isError: Boolean, did the code error
+6. isUserStarted: Boolean, True if this code ran when the user clicked "execute code." False if this code ran when the user when to the next problem and we automatically ran the code to see if they had a better version of the code at the end.
+7. backsteps: Number of backsteps taken during this code run
+8. fwdSteps: Number of forward steps taken during this code run
+9. stepRevisits: Number of times the participant returned to a execution step they had already seen.
 
 ## coding_problem_session.csv
 1. codeProbId
