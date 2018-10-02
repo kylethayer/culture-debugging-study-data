@@ -62,9 +62,9 @@ Each row represents one code visualization execution. The **bold** fields are th
 
 30. "sessionSumCodeEditDistance": Sum of all edit distances of the code durring the browser session.
 
-31. "duplicateCodeCount": 
+31. "duplicateCodeCount": How many times was code run this browser session identical to code run by another user.
 
-32. "sessionAnyDupCode": Was any code run this browser session identical to code run by another user.
+32. **"sessionAnyDupCode"**: Was any code run this browser session identical to code run by another user.
 
 33. "Student.teacher.ratio": Student teacher ration of the IP address country. Data source: https://data.worldbank.org/indicator/SE.PRM.ENRL.TC.ZS
 
