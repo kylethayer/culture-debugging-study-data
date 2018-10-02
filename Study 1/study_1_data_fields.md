@@ -34,23 +34,23 @@ Each row represents one code visualization execution. The **bold** fields are th
 
 16. "vizSeenEnd": Did the user view the last execution step?
 
-17. **"vizSteps.StepLine"**
+17. "vizSteps.StepLine": I am not exactly sure what this is, but it is the number of "step_line" events in the code execution
 
-18. **"vizSteps.Call"**
+18. **"vizSteps.Call"**: The number of function calls in the code execution
 
-19. **"vizSteps.Return"**
+19. "vizSteps.Return": The number of returns from functions in the code execution
 
-20. **"vizSteps.Exception"**
+20. **"vizSteps.Exception"**: The number of exceptions thrown in the code execution
 
-21. **"vizSteps.UncaughtException"**
+21. "vizSteps.UncaughtException": The number of uncaught exceptions thrown in the code execution
 
-22. **"vizSteps.InstructionLimitReached"**
+22. "vizSteps.InstructionLimitReached": The number of times the code reached the instruction call limit of python tutor
 
-23. **"vizCodeWasEdited"**
+23. **"vizCodeWasEdited"**: Was the code edited since the last code visualization execution
 
-24. **"vizCodeCharLength"**
+24. **"vizCodeCharLength"**: The length of the code being executed in # of characters
 
-25. **"vizCodeEditDistance"**
+25. **"vizCodeEditDistance"**: The edit distance from the previous code visualization execution
 
 26. **"vizCode"**
 
