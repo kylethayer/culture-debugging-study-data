@@ -83,14 +83,15 @@ to debug your code (or why you did not use that view)?"
 6. Answer to "How important do you think the ability to step backward is in solving coding problems? "
 
 ## hofstede-fixed.csv
-1. ctr	
-2. country
-3. pdi	
-4. idv
-5. mas
-6. uai
-7. ltowvs
-8. ivr
+data from https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
+1. ctr - country name
+2. country - country name (different encoding)
+3. pdi: Hofstede's Power Distance Indicator for the country. Data source: 
+4. idv: Hofstede's Individualism score for the country
+5. mas: Hofstede's Masculinity score for the country
+6. uai: Hofstede's Uncertainty Avoidance score for the country
+7. ltowvs: Hofstede's Long-Term Orientation score for the country
+8. ivr:  Hofstede's Indulgent vs. Restraint score for the country
 
 ## participantInfo.csv
 1. participantId- The id of this participant
