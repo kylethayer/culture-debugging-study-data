@@ -68,9 +68,9 @@ Each row represents one code visualization execution. The **bold** fields are th
 
 33. "sessionAnyDupCode"
 
-34. "Student.teacher.ratio": Student teacher ration of the IP address country
+34. "Student.teacher.ratio": Student teacher ration of the IP address country https://data.worldbank.org/indicator/SE.PRM.ENRL.TC.ZS
 
-35. "GDP.per.capita": Gross Domestic Product per capita of the IP address country
+35. "GDP.per.capita": Gross Domestic Product per capita of the IP address country https://data.worldbank.org/indicator/NY.GDP.PCAP.CD
 
 36. "ctr": Country based on IP address. Should be equivalent to "Country", though could be different string (e.g., "United States" vs. "USA").
 
