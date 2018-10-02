@@ -62,8 +62,9 @@ We also did some other statistics comparing Hofstede's Power Distance (hofstede-
 13. age: reported age of participant
 14. programmingExperience: Little to none, Three months or one course, Six months or two courses, one year or three to four courses, more
 15. pythonBefore: "Have you programmed in Python before?"
-16. pythonTutorBefore
-17. readUnderstandInstructions
+16. pythonTutorBefore: "How many times have you used the Python Tutor interface previously?" - Never, 1 or 2 times, 3-5 times, 6+ times
+17. readUnderstandInstructions: (I asked this becaues one of my pilot testers skipped the directions) "You will be using the Python Tutor interface to debug code for this test. 
+Have you read and understood the instructions above?"- "I read and understood.", "I read and did not understand.", "I did not read, but understand PythonTutor.", "I did not read, and do not understand PythonTutor."
 
 ## follow_up_questions.csv
 1. participantId
