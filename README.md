@@ -13,7 +13,7 @@ Note: We do not include any of the actual code users were editing due to the pot
 
   * study_1_data_part_[1-11].csv - The processed data files for the study 1 regression model. It is split into 11 pieces because of GitHub's file size limit. The R script has code to combine them and a commented out line to save it all as one file. Description of fields coming soon.
   
-  * CodeExampleDescriptions.csv - Our classification of the code from the randomly selected browser sessions. Note that we excluded some sessions since our script that selected the browser sessions failed to display the program being edited/executed. ["Field Descriptions"](/Study 1/CodeExampleDescriptionsFields.md)
+  * CodeExampleDescriptions.csv - Our classification of the code from the randomly selected browser sessions. Note that we excluded some sessions since our script that selected the browser sessions failed to display the program being edited/executed. ["Field Descriptions"](./Study 1/CodeExampleDescriptionsFields.md)
   
   * CodeExampleDescriptionsSummaryStats.csv - A couple summary statistics for the four countries.
 
