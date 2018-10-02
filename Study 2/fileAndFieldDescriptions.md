@@ -28,23 +28,23 @@ We also did some other statistics comparing Hofstede's Power Distance (hofstede-
 9. stepRevisits: Number of times the participant returned to a execution step they had already seen.
 
 ## coding_problem_session.csv
-1. codeProbId
-2. participantId
-3. problemNum
-4. isTimed
-5. fwdSteps
-6. backSteps
-7. stepRevisits
-8. totalSteps
-9. totalExecutionVizSessions
-10. score
+1. codeProbId: The id of this coding problem session
+2. participantId: Which participant was doing this coding session
+3. problemNum: which problem the participant was working on
+4. isTimed: Boolean: True if this is during the initial timed part of the online experiment. False if this was after they finished and were on the result page where they could continue working as long as they wanted.
+5. fwdSteps: Total number of forward steps taken during all code runs in this session
+6. backSteps: Total number of back steps taken during all code runs in this session
+7. stepRevisits: Total number of step revisits taken during all code runs in this session
+8. totalSteps: Total steps taken during this session
+9. totalExecutionVizSessions: number of code executions run during this session.
+10. score: The best score of any code run during this coding problem session.
 
 ## country-matching-file.csv
-1. ctr	
-2. hofstede-country
-3. ip-Country
-4. demo-country
-5. short-name
+1. ctr: Country name
+2. hofstede-country: Country name as used in Hofstede file
+3. ip-Country: Country name as used for the IP address country
+4. demo-country: Country name as used in the demographic questions on country
+5. short-name: Shorter version of name for display purposes
 
 ## demographics.csv
 1. participantId
