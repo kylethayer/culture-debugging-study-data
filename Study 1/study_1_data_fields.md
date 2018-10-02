@@ -68,22 +68,22 @@ Each row represents one code visualization execution. The **bold** fields are th
 
 33. "sessionAnyDupCode"
 
-34. "Student.teacher.ratio"
+34. "Student.teacher.ratio": Student teacher ration of the IP address country
 
-35. "GDP.per.capita"
+35. "GDP.per.capita": Gross Domestic Product per capita of the IP address country
 
-36. "ctr"
+36. "ctr": Country based on IP address. Should be equivalent to "Country", though could be different string (e.g., "United States" vs. "USA").
 
-37. **"pdi"**
+37. **"pdi"**: Hofstede's Power Distance Indicator for the country
 
-38. "idv"
+38. "idv": Hofstede's Individualism score for the country
 
-39. "mas"
+39. "mas": Hofstede's Masculinity score for the country
 
-40. "uai"
+40. "uai": Hofstede's Uncertainty Avoidance score for the country
 
-41. "ltowvs"
+41. "ltowvs": Hofstede's Long-Term Orientation score for the country
 
-42. "ivr"
+42. "ivr": Hofstede's Indulgent vs. Restraint score for the country
 
 
