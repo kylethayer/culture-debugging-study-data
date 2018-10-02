@@ -47,21 +47,21 @@ We also did some other statistics comparing Hofstede's Power Distance (hofstede-
 5. short-name: Shorter version of name for display purposes
 
 ## demographics.csv
-1. participantId
-2. current_time
-3. retake
-4. gender
-5. education
-6. multinational
-7. country0
-8. country1
+1. participantId: The id of this participant
+2. current_time: The time the participant started the experiment
+3. retake: Did the participant say they'be taken this experiment before
+4. gender: Reported gender of participant 0- Male, 1 - female, 2 - other
+5. education: Reported education level of participant
+6. multinational: Reported whether participant has lived in more than one country
+7. country0: First country (or only country) participant reported living in
+8. country1: Second country participant reported living in
 9. country2
 10. country3
 11. country4
 12. country5
-13. age
-14. programmingExperience
-15. pythonBefore
+13. age: reported age of participant
+14. programmingExperience: Little to none, Three months or one course, Six months or two courses, one year or three to four courses, more
+15. pythonBefore: "Have you programmed in Python before?"
 16. pythonTutorBefore
 17. readUnderstandInstructions
 
@@ -100,16 +100,16 @@ We also did some other statistics comparing Hofstede's Power Distance (hofstede-
 ## schwartz_survey.csv
 1. schwartzSurveyId
 2. participantId
-3. power
-4. achievement
-5. hedonism
-6. stimulation
-7. selfDirection
-8. universalism
-9. benevolence
-10. tradition
-11. conformity
-12. security
+3. power: "POWER (social power, authority, wealth)"
+4. achievement: "ACHIEVEMENT (success, capability, ambition, influence on people and events)"
+5. hedonism: "HEDONISM (gratification of desires, enjoyment in life, self-indulgence)"
+6. stimulation: "STIMULATION (daring, a varied and challenging life, an exciting life)"
+7. selfDirection: "SELF-DIRECTION (creativity, freedom, curiosity, independence, choosing one's own goals)"
+8. universalism: "UNIVERSALISM (broad-mindedness, beauty of nature and arts, social justice, a world at peace, equality, wisdom, unity with nature, environmental protection)"
+9. benevolence: "BENEVOLENCE (helpfulness, honesty, forgiveness, loyalty, responsibility)"
+10. tradition: "TRADITION (respect for tradition, humbleness, accepting one's portion in life, devotion, modesty)"
+11. conformity: "CONFORMITY (obedience, honoring parents and elders, self-discipline, politeness)"
+12. security: "SECURITY (national security, family security, social order, cleanliness, reciprocation of favors)"
 13. conservation
 14. selfTranscendence
 
