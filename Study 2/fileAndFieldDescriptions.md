@@ -1,5 +1,7 @@
 # Description of files and fields for Study 2
 
+Overview of relations. Participants (participantInfo.csv) came to the site and took the 
+
 ## code_run_scores.csv
 
 1. codeRunId: 
