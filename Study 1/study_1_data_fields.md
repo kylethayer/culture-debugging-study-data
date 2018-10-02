@@ -26,13 +26,13 @@ Each row represents one code visualization execution. The **bold** fields are th
 
 12. **"vizTime"**: The time between the start of a code visualization execution and the last event in code visualization execution.
 
-13. **"vizSessionNum"**
+13. **"vizSessionNum"**: Within the session, what code visualization execution was this (e.g., 1 for first execution, 2 for second).
 
-14. **"vizTotalSteps"**
+14. **"vizTotalSteps"**: Total number of steps in the code execution available for the user to view.
 
-15. **"vizCodeLines"**
+15. "vizCodeLines": The length of the code being run in number of lines.
 
-16. **"vizSeenEnd"**
+16. "vizSeenEnd": Did the user view the last execution step?
 
 17. **"vizSteps.StepLine"**
 
