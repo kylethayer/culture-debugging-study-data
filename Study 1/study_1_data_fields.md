@@ -54,19 +54,19 @@ Each row represents one code visualization execution. The **bold** fields are th
 
 26. **"vizCode"**
 
-27. **"sessionAnyEdits"**
+27. **"sessionAnyEdits"**: Boolean. Was the code ever edited during the browser session?
 
-28. "sessionNumVizSessions"
+28. "sessionNumVizSessions": How many code execution visualization sessions were there in the browser session.
 
-29. "sessionCharLengthRangeDelta"
+29. "sessionCharLengthRangeDelta": For a browser session, the difference between the shortest and longest code (measured in characters).
 
-30. "sessionTotalStepsInViz"
+30. "sessionTotalStepsInViz": How many total steps were taken in all code execution visualizations in the browser session.
 
-31. "sessionSumCodeEditDistance"
+31. "sessionSumCodeEditDistance": Sum of all edit distances of the code durring the browser session.
 
-32. "duplicateCodeCount"
+32. "duplicateCodeCount": 
 
-33. "sessionAnyDupCode"
+33. "sessionAnyDupCode": Was any code run this browser session identical to code run by another user.
 
 34. "Student.teacher.ratio": Student teacher ration of the IP address country. Data source: https://data.worldbank.org/indicator/SE.PRM.ENRL.TC.ZS
 
