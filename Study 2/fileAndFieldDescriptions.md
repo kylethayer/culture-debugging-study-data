@@ -74,7 +74,7 @@ Truncated version of follow_up_questions.txt
 4. how_important_step_backward
 
 ## follow_up_questions.txt
-1. participantId
+1. participantId - Id of this participant
 2. Answer to "Describe in two or more sentences how you used the code execution view
 to debug your code (or why you did not use that view)?"
 3. Answer to "How easy was it to use the Python Tutor Interface?"
@@ -102,8 +102,27 @@ data from https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
 6. contentLanguage - not used in this study
 
 ## schwartz_survey.csv
-1. schwartzSurveyId
-2. participantId
+Formulas for conservation and selfTranscendence from original SSVS paper
+
+ Equations 3 & 4 in Lindeman and Verkasalo for 7 point scale
+
+Conservation = .92 + (.15 × Power) + (.03 × Achievement) – (.17 × Hedonism) – (.25 × Stimulation) – (.31 × Self-Direction) – (.26 × Universalism) + (.04 × Benevolence) + (.30 × Tradition) + (.30 × Conformity) + (.20 × Security)
+
+Self-Transcendence = –.56 – (.30 × Power) – (.33 × Achievement) – (.16 × Hedonism) – (.14 × Stimulation) + (.04 × Self-Direction) + (.22 × Universalism) + (.24 × Benevolence) + (.12 × Tradition) + (.03 × Conformity) + (.03 × Security)
+
+Word doc updated means: 
+http://blogs.helsinki.fi/everyday-thinking/files/2015/11/The-Short-Schwartzs-Value-Survey.docx
+  Study 2 M = .21 and SD = 1.00 for Conservation, 
+  and M = -.82 and SD = .86 for Self-Transcendence.
+
+so final formula is:
+
+Conservation = -.21 + (.15 × Power) + (.03 × Achievement) – (.17 × Hedonism) – (.25 × Stimulation) – (.31 × Self-Direction) – (.26 × Universalism) + (.04 × Benevolence) + (.30 × Tradition) + (.30 × Conformity) + (.20 × Security)
+
+Self-Transcendence = .82 – (.30 × Power) – (.33 × Achievement) – (.16 × Hedonism) – (.14 × Stimulation) + (.04 × Self-Direction) + (.22 × Universalism) + (.24 × Benevolence) + (.12 × Tradition) + (.03 × Conformity) + (.03 × Security)
+
+1. schwartzSurveyId: Id of this survey answer set
+2. participantId: Id of this participant
 3. power: "POWER (social power, authority, wealth)"
 4. achievement: "ACHIEVEMENT (success, capability, ambition, influence on people and events)"
 5. hedonism: "HEDONISM (gratification of desires, enjoyment in life, self-indulgence)"
@@ -114,8 +133,8 @@ data from https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
 10. tradition: "TRADITION (respect for tradition, humbleness, accepting one's portion in life, devotion, modesty)"
 11. conformity: "CONFORMITY (obedience, honoring parents and elders, self-discipline, politeness)"
 12. security: "SECURITY (national security, family security, social order, cleanliness, reciprocation of favors)"
-13. conservation
-14. selfTranscendence
+13. conservation: Aggregate measure of conservation vs. openness to change, based on the individual answers
+14. selfTranscendence: Aggregate measure of self-transcendence vs. self-enhancement based on the individual answers
 
 ## world-bank gdp per capita.csv
 1. Country
