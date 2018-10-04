@@ -102,24 +102,23 @@ data from https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
 6. contentLanguage - not used in this study
 
 ## schwartz_survey.csv
-Formulas for conservation and selfTranscendence from original SSVS paper
+Formulas for conservation and selfTranscendence from original SSVS paper: Measuring values with the Short Schwartz's Value Survey.
+Lindeman, Verkasalo (2005).(https://www.ncbi.nlm.nih.gov/pubmed/16171417)
 
- Equations 3 & 4 in Lindeman and Verkasalo for 7 point scale
+Equations 3 & 4 are for the 7 point scale version of the SSVS:
 
-Conservation = .92 + (.15 × Power) + (.03 × Achievement) – (.17 × Hedonism) – (.25 × Stimulation) – (.31 × Self-Direction) – (.26 × Universalism) + (.04 × Benevolence) + (.30 × Tradition) + (.30 × Conformity) + (.20 × Security)
+* Conservation = .92 + (.15 × Power) + (.03 × Achievement) – (.17 × Hedonism) – (.25 × Stimulation) – (.31 × Self-Direction) – (.26 × Universalism) + (.04 × Benevolence) + (.30 × Tradition) + (.30 × Conformity) + (.20 × Security)
 
-Self-Transcendence = –.56 – (.30 × Power) – (.33 × Achievement) – (.16 × Hedonism) – (.14 × Stimulation) + (.04 × Self-Direction) + (.22 × Universalism) + (.24 × Benevolence) + (.12 × Tradition) + (.03 × Conformity) + (.03 × Security)
+* Self-Transcendence = –.56 – (.30 × Power) – (.33 × Achievement) – (.16 × Hedonism) – (.14 × Stimulation) + (.04 × Self-Direction) + (.22 × Universalism) + (.24 × Benevolence) + (.12 × Tradition) + (.03 × Conformity) + (.03 × Security)
 
-Word doc updated means: 
-http://blogs.helsinki.fi/everyday-thinking/files/2015/11/The-Short-Schwartzs-Value-Survey.docx
-  Study 2 M = .21 and SD = 1.00 for Conservation, 
-  and M = -.82 and SD = .86 for Self-Transcendence.
+Word doc with updated means (http://blogs.helsinki.fi/everyday-thinking/files/2015/11/The-Short-Schwartzs-Value-Survey.docx)
+* Study 2 M = .21 and SD = 1.00 for Conservation, and M = -.82 and SD = .86 for Self-Transcendence.
 
 so final formula is:
 
-Conservation = -.21 + (.15 × Power) + (.03 × Achievement) – (.17 × Hedonism) – (.25 × Stimulation) – (.31 × Self-Direction) – (.26 × Universalism) + (.04 × Benevolence) + (.30 × Tradition) + (.30 × Conformity) + (.20 × Security)
+* Conservation = -.21 + (.15 × Power) + (.03 × Achievement) – (.17 × Hedonism) – (.25 × Stimulation) – (.31 × Self-Direction) – (.26 × Universalism) + (.04 × Benevolence) + (.30 × Tradition) + (.30 × Conformity) + (.20 × Security)
 
-Self-Transcendence = .82 – (.30 × Power) – (.33 × Achievement) – (.16 × Hedonism) – (.14 × Stimulation) + (.04 × Self-Direction) + (.22 × Universalism) + (.24 × Benevolence) + (.12 × Tradition) + (.03 × Conformity) + (.03 × Security)
+* Self-Transcendence = .82 – (.30 × Power) – (.33 × Achievement) – (.16 × Hedonism) – (.14 × Stimulation) + (.04 × Self-Direction) + (.22 × Universalism) + (.24 × Benevolence) + (.12 × Tradition) + (.03 × Conformity) + (.03 × Security)
 
 1. schwartzSurveyId: Id of this survey answer set
 2. participantId: Id of this participant
@@ -133,8 +132,8 @@ Self-Transcendence = .82 – (.30 × Power) – (.33 × Achievement) – (.16 ×
 10. tradition: "TRADITION (respect for tradition, humbleness, accepting one's portion in life, devotion, modesty)"
 11. conformity: "CONFORMITY (obedience, honoring parents and elders, self-discipline, politeness)"
 12. security: "SECURITY (national security, family security, social order, cleanliness, reciprocation of favors)"
-13. conservation: Aggregate measure of conservation vs. openness to change, based on the individual answers
-14. selfTranscendence: Aggregate measure of self-transcendence vs. self-enhancement based on the individual answers
+13. conservation: Aggregate measure of conservation vs. openness to change, based on the individual answers using the formula above
+14. selfTranscendence: Aggregate measure of self-transcendence vs. self-enhancement, based on the individual answers using the formula above
 
 ## world-bank gdp per capita.csv
 1. Country
